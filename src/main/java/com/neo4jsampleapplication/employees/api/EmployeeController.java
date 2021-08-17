@@ -1,7 +1,9 @@
 package com.neo4jsampleapplication.employees.api;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
 
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @Api(value = "EmployeeController", description = "REST APIs related to Employee Entity.")
 @RestController
 public class EmployeeController {
@@ -39,7 +42,7 @@ public class EmployeeController {
 
 	@ApiOperation(value = "Add a new employee", response = Iterable.class, tags = "addEmployee")
 	@PostMapping("/employee")
-	public int addEmployee(@RequestParam("id") Integer id, @RequestParam("name") String name) {
-		return employeeService.AddNewEmployee(id, name);
+	public int addEmployee(@RequestBody Employee employee) {
+		return employeeService.AddNewEmployee(employee);
 	}
 }

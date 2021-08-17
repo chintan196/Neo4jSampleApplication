@@ -26,12 +26,12 @@ public class EmployeeService {
 		this.databaseSelectionProvider = databaseSelectionProvider;
 	}
 	
-	public Integer AddNewEmployee(Integer id, String name) {		
+	public Integer AddNewEmployee(Employee employee) {		
 		return this.neo4jClient
 				.query( "MERGE (e:Employee {id: $id, name:$name}) RETURN e.id" )
 				.in( database() )
-				.bindAll(Map.of("id", id))
-				.bindAll(Map.of("name", name))
+				.bindAll(Map.of("id", employee.getId()))
+				.bindAll(Map.of("name", employee.getName()))
 				.run()
 				.counters()
 				.propertiesSet();
