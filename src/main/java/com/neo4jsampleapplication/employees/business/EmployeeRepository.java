@@ -10,4 +10,7 @@ interface EmployeeRepository extends Repository<Employee, Integer> {
 
 		@Query("MATCH (employee:Employee) WHERE employee.name CONTAINS $name RETURN employee")
 		List<Employee> findSearchResults(@Param("name") String name);
+		
+		@Query("MATCH (employee:Employee) RETURN employee")
+		List<Employee> getAllEmployees();
 }

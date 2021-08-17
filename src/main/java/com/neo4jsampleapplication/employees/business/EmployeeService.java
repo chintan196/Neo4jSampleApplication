@@ -36,6 +36,12 @@ public class EmployeeService {
 				.counters()
 				.propertiesSet();
 	}
+
+	public List<Employee> getAllEmployees() {
+		return this.employeeRepository.getAllEmployees()
+				.stream()
+				.collect(Collectors.toList());
+	}
 	
 	public List<Employee> searchEmployeesByName(String name) {
 		return this.employeeRepository.findSearchResults(name)
